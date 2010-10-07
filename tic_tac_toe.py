@@ -5,7 +5,7 @@ class Player(object):
     SYMBOLS = ('X', 'O',)
     PLAYER_TYPES = ('human', 'computer',)
     
-    def __init__(self, symbol, type, game):
+    def __init__(self, symbol, player_type, game):
         if symbol not in self.SYMBOLS: 
             # better validation could be done to
             # ensure uniqueness to other player
@@ -15,18 +15,18 @@ class Player(object):
         
         self.symbol = symbol
         
-        if type not in self.PLAYER_TYPES:
+        if player_type not in self.PLAYER_TYPES:
             raise Exception(
                 "Invalid player type, must be 'human' or 'computer'"
             )
         
-        self.type = type
+        self.player_type = player_type
         self.game = game
         
     def play(self):
-        if self.type == 'human':
+        if self.player_type == 'human':
             self.human_play()
-        elif self.type == 'computer':
+        elif self.player_type == 'computer':
             self.computer_play()
         else:
             raise Exception('Invalid Player Type')
