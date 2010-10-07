@@ -61,6 +61,10 @@ class Game(object):
             '4', '5', '6',
             '7', '8', '9'
         ]
+        
+        #used as game terminator if
+        #even if there isn't a winner
+        self.valid_moves_count = 0
     
     def display_board(self):
         rows = [self.board[0:3], self.board[3:6], self.board[6:9]]
@@ -73,7 +77,14 @@ class Game(object):
             print 'Invalid play, please select another spot.'
             return False
         
+        self.valid_moves_count += 1
         return True
+        
+    def is_game_over(self):
+        # need to add check for winning condition when
+        # completed.
+        return self.valid_moves_count == 9
+        print 'Game over.'
 
 def play():
     """
@@ -87,7 +98,12 @@ def play():
 	
     while 1:
         player_1.play()
+        if game.is_game_over():
+            break
+        
         player_2.play()
+        if game.is_game_over():
+            break
 
 if __name__ == "__main__":
     play()	
