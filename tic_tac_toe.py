@@ -35,8 +35,11 @@ class Player(object):
         while True:
             play_spot = raw_input("Please enter your move: ")
             if self.game.is_valid_play(play_spot):
-                print 'human played'
+                self.game.board[self.game.board.index(play_spot)] = self.symbol
+                self.game.display_board()
                 break
+            else:
+                self.game.display_board()
         
     def computer_play(self):
         print 'computer played'
@@ -58,9 +61,7 @@ class Game(object):
             '4', '5', '6',
             '7', '8', '9'
         ]
-        
-        self.plays = []
-
+    
     def display_board(self):
         rows = [self.board[0:3], self.board[3:6], self.board[6:9]]
         
@@ -68,10 +69,10 @@ class Game(object):
             print ' '.join(row)
             
     def is_valid_play(self, play_spot):
-        if str(play_spot) in self.plays:
+        if str(play_spot) not in self.board:
+            print 'Invalid play, please select another spot.'
             return False
         
-        self.plays.append(play_spot)
         return True
 
 def play():
