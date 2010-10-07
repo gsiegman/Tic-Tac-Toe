@@ -24,13 +24,8 @@ class Player(object):
         self.game = game
         
     def play(self):
-        if self.player_type == 'human':
-            self.human_play()
-        elif self.player_type == 'computer':
-            self.computer_play()
-        else:
-            raise Exception('Invalid Player Type')
-        
+        getattr(self, '%s_play' % self.player_type)()
+    
     def human_play(self):
         while True:
             play_spot = raw_input("Please enter your move: ")
