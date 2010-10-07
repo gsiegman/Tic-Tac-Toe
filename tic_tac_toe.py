@@ -15,13 +15,22 @@ class Game(object):
             '4', '5', '6',
             '7', '8', '9'
         ]
+        
+        self.played = []
+
+    def display_board(self):
+        rows = [self.board[0:3], self.board[3:6], self.board[6:9]]
+        
+        for row in rows:
+            print ' '.join(row)
 
 def play():
     """
     Runs the game loop
     """
     game = Game()
-    
+    game.display_board()
+	
     while 1:
         pass
 
