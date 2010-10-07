@@ -1,3 +1,28 @@
+class Player(object):
+    """
+    A Tic-Tac-Toe Player
+    """
+    SYMBOLS = ('X', 'O',)
+    PLAYER_TYPES = ('human', 'computer',)
+    
+    def __init__(self, symbol, type):
+        if symbol not in self.SYMBOLS: 
+            # better validation could be done to
+            # ensure only uniqueness to other
+            # player
+            raise Exception(
+                "Invalid game symbol, must be 'X' or 'O'."
+            )
+        
+        self.symbol = symbol
+        
+        if type not in self.PLAYER_TYPES:
+            raise Exception(
+                "Invalid player type, must be 'human' or 'computer'"
+            )
+        
+        self.type = type
+        
 class Game(object):
     """
     A Game of Tic-Tac-Toe
@@ -15,8 +40,6 @@ class Game(object):
             '4', '5', '6',
             '7', '8', '9'
         ]
-        
-        self.played = []
 
     def display_board(self):
         rows = [self.board[0:3], self.board[3:6], self.board[6:9]]
@@ -30,6 +53,9 @@ def play():
     """
     game = Game()
     game.display_board()
+    
+    player_1 = Player('X', 'human')
+    player_2 = Player('O', 'computer')
 	
     while 1:
         pass
