@@ -23,6 +23,20 @@ class Player(object):
         
         self.type = type
         
+    def play(self):
+        if self.type == 'human':
+            self.human_play()
+        elif self.type == 'computer':
+            self.computer_play()
+        else:
+            raise Exception('Invalid Player Type')
+        
+    def human_play(self):
+        print 'human played'
+        
+    def computer_play(self):
+        print 'computer played'
+        
 class Game(object):
     """
     A Game of Tic-Tac-Toe
@@ -58,7 +72,9 @@ def play():
     player_2 = Player('O', 'computer')
 	
     while 1:
-        pass
+        player_1.play()
+        player_2.play()
+        break
 
 if __name__ == "__main__":
     play()	
