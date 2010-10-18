@@ -44,10 +44,10 @@ class Game(object):
     A Game of Tic-Tac-Toe
     """
     WINNING_COMBINATIONS = [
-    	[1, 2, 3], [4, 5, 6],
-    	[7, 8, 9], [1, 4, 7],
-    	[2, 5, 8], [3, 6, 9],
-    	[1, 5, 9], [3, 5, 7],
+    	[0, 1, 2], [3, 4, 5],
+    	[6, 7, 8], [0, 3, 6],
+    	[1, 4, 7], [2, 5, 8],
+    	[0, 4, 8], [2, 4, 6],
     ]
     
     def __init__(self):
@@ -57,7 +57,7 @@ class Game(object):
             '7', '8', '9'
         ]
         
-        #used as game terminator if
+        #used as game terminator
         #even if there isn't a winner
         self.valid_moves_count = 0
     
@@ -74,12 +74,17 @@ class Game(object):
         
         self.valid_moves_count += 1
         return True
-        
+    
+    def has_winner(self):
+        for combo in self.WINNING_COMBINATIONS:
+            if self.board[combo[0]] == self.board[combo[1]] == self.board[combo[2]]:
+                print 'Player with "%s" wins!' % self.board[combo[0]]
+                return True
+            
     def is_game_over(self):
         # need to add check for winning condition when
         # completed.
-        return self.valid_moves_count == 9
-        print 'Game over.'
+        return self.has_winner() or self.valid_moves_count == 9
 
 def play():
     """
